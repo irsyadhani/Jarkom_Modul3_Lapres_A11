@@ -143,14 +143,13 @@ _**Penyelesaian:**_
 #### Soal 7: 
 User autentikasi milik Anri, User : userta_a11, Password : inipassw0rdta_a11
 _**Penyelesaian:**_
-- Memasukkan perinah kode ```htpasswd -c /etc/squid/passwd userta_a11``` dan passwordnya ```inipassw0rdta_a11```
+- Memasukkan perinah kode ```htpasswd -c /etc/squid3/passwd userta_a11``` dan passwordnya ```inipassw0rdta_a11```
 - Memasukkan perintah kode di file ```squid.conf```
 ```
 http_port 8080
 visible_hostname mojokerto
-acl all src 0.0.0.0/0.0.0.0
 
-auth_param basic program /usr/lib/squid/ncsa_auth /etc/squid/passwd
+auth_param basic program /usr/lib/squid3/ncsa_auth /etc/squid3/passwd
 auth_param basic children 5
 auth_param basic realm Proxy
 auth_param basic credentialsttl 2 hours
@@ -168,9 +167,8 @@ acl AVAILABLE_WORKING time TW 13:00-18:00
 ```
 - Memasukkan perintah kode di file ```squid.conf```
 ```
-include /etc/squid/acl.conf
+include /etc/squid3/acl.conf
 visible_hostname mojokerto
-acl all src 0.0.0.0/0.0.0.0
 
 http_port 8080
 http_access allow AVAILABLE_WORKING
@@ -190,9 +188,8 @@ acl AVAILABLE_WORKING_3 time WHF 00:00-09:00
 ```
 - Memasukkan perintah kode di file ```squid.conf```
 ```
-include /etc/squid/acl.conf
+include /etc/squid3/acl.conf
 visible_hostname mojokerto
-acl all src 0.0.0.0/0.0.0.0
 
 http_port 8080
 http_access allow AVAILABLE WORKING_2
@@ -209,7 +206,6 @@ _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```squid.conf```
 ```
 visible_hostname mojokerto
-acl all src 0.0.0.0/0.0.0.0
 acl lan src all
 acl google dstdomain .google.com
 
@@ -230,11 +226,11 @@ Bu Meguri meminta Anri untuk mengubah error page default squid
 _**Penyelesaian:**_
 - Memasukkan perintah ke UML Mojokerto
 ```
-cd /usr/share/squid/errors
-mv /usr/share/squid/errors/en /usr/share/squid/errors/en1
-mkdir /usr/share/squid/errors/en
+cd /usr/share/squid3/errors
+mv /usr/share/squid3/errors/en /usr/share/squid3/errors/en1
+mkdir /usr/share/squid3/errors/en
 wget 10.151.36.202/ERR_ACCESS_DENIED
-cp -r ERR_ACCESS_DENIED /usr/share/squid/errors/en
+cp -r ERR_ACCESS_DENIED /usr/share/squid3/errors/en
 ```
 - Memasukkan perintah kode di file ```/etc/bind/named.conf.local```
 ```
