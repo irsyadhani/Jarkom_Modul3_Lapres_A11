@@ -144,36 +144,46 @@ _**Penyelesaian:**_
 ##### User autentikasi milik Anri, User : userta_a11, Password : inipassw0rdta_a11
 _**Penyelesaian:**_
 - Memasukkan perinah kode ```htpasswd -c /etc/squid/passwd userta_a11``` dan passwordnya ```inipassw0rdta_a11```
+
 ![alt text](/img/7_1.jpg)
 
 #### Soal 8:
 ##### Anri sudah menjadwal pengerjaan TA-nya setiap hari Selasa-Rabu pukul 13.00-18.00.
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf``` 
+
 ![alt text](/img/8_1.jpg)
 - Memasukkan perintah kode di file ```squid.conf```
+
 ![alt text](/img/8_2.jpg)
 - Hasil:
+
 ![alt text](/img/8_3.jpg)
 
 #### Soal 9:
 ##### Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 09.00 keesokan harinya (sampai Jumat jam 09.00).
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf```
+
 ![alt text](/img/9_1.jpg)
 - Memasukkan perintah kode di file ```squid.conf```
+
 ![alt text](/img/9_2.jpg)
 - Hasil:
+
 ![alt text](/img/9_3.jpg)
 
 #### Soal 10: 
 ##### Setiap dia mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```squid.conf```
+
 ![alt text](/img/10_1.jpg)
 - ketika membuka ```google.com```
+
 ![alt text](/img/10_2.jpg)
 - Hasil:
+
 ![alt text](/img/10_3.jpg)
 
 #### Soal 11:
