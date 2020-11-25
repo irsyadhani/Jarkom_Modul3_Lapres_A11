@@ -141,34 +141,64 @@ _**Penyelesaian:**_
 ---
 # Proxy
 #### Soal 7: 
-##### User autentikasi milik Anri, User : userta_a11, Password : inipassw0rdta_a11
+User autentikasi milik Anri, User : userta_a11, Password : inipassw0rdta_a11
 _**Penyelesaian:**_
 - Memasukkan perinah kode ```htpasswd -c /etc/squid/passwd userta_a11``` dan passwordnya ```inipassw0rdta_a11```
+- Memasukkan perintah kode di file ```squid.conf```
+```
+http_port 8080
+visible_hostname mojokerto
+acl all src 0.0.0.0/0.0.0.0
 
-![alt text](/img/7_1.jpg)
+auth_param basic program /usr/lib/squid/ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USER
+```
 
 #### Soal 8:
-##### Anri sudah menjadwal pengerjaan TA-nya setiap hari Selasa-Rabu pukul 13.00-18.00.
+Anri sudah menjadwal pengerjaan TA-nya setiap hari Selasa-Rabu pukul 13.00-18.00.
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf``` 
-
-![alt text](/img/8_1.jpg)
+```
+acl AVAILABLE_WORKING time TW 13:00-18:00
+```
 - Memasukkan perintah kode di file ```squid.conf```
+```
+include /etc/squid/acl.conf
+visible_hostname mojokerto
+acl all src 0.0.0.0/0.0.0.0
 
-![alt text](/img/8_2.jpg)
+http_port 8080
+http_access allow AVAILABLE_WORKING
+http_access deny all
+```
 - Hasil:
 
 ![alt text](/img/8_3.jpg)
 
 #### Soal 9:
-##### Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 09.00 keesokan harinya (sampai Jumat jam 09.00).
+Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 09.00 keesokan harinya (sampai Jumat jam 09.00).
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf```
-
-![alt text](/img/9_1.jpg)
+```
+acl AVAILABLE_WORKING_2 time TWH 21:00-23:59
+acl AVAILABLE_WORKING_3 time WHF 00:00-09:00
+```
 - Memasukkan perintah kode di file ```squid.conf```
+```
+include /etc/squid/acl.conf
+visible_hostname mojokerto
+acl all src 0.0.0.0/0.0.0.0
 
-![alt text](/img/9_2.jpg)
+http_port 8080
+http_access allow AVAILABLE WORKING_2
+http_access allow AVAILABLE WORKING_3
+http_access deny all
+```
 - Hasil:
 
 ![alt text](/img/9_3.jpg)
@@ -177,8 +207,17 @@ _**Penyelesaian:**_
 ##### Setiap dia mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```squid.conf```
+```
+visible_hostname mojokerto
+acl all src 0.0.0.0/0.0.0.0
+acl lan src all
+acl google dstdomain .google.com
 
-![alt text](/img/10_1.jpg)
+http_port 8080
+deny_info http://monta.if.its.ac.id lan
+http_reply_access deny google lan
+http_access allow all
+```
 - ketika membuka ```google.com```
 
 ![alt text](/img/10_2.jpg)
@@ -187,10 +226,45 @@ _**Penyelesaian:**_
 ![alt text](/img/10_3.jpg)
 
 #### Soal 11:
-#####
+Bu Meguri meminta Anri untuk mengubah error page default squid
 _**Penyelesaian:**_
--
+- Memasukkan perintah ke UML Mojokerto
+```
+cd /usr/share/squid/errors
+mv /usr/share/squid/errors/en /usr/share/squid/errors/en1
+mkdir /usr/share/squid/errors/en
+wget 10.151.36.202/ERR_ACCESS_DENIED
+cp -r ERR_ACCESS_DENIED /usr/share/squid/errors/en
+```
+- Memasukkan perintah kode di file ```/etc/bind/named.conf.local```
+```
+zone "janganlupa-ta.a11.pw"{
+	type master;
+	file"/ets/bind/jarkom/janganlupa-ta.a13.pw";
+};
+```
+- Hasil:
+
+![alt text](/img/.jpg)
 #### Soal 12:
-#####
+menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memasukkan port 8080.
 _**Penyelesaian:**_
--
+- Memasukkan perintah kode di file ```/etc/bind/jarkom/janganlupa-ta.a11.pw```
+```
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SDA	janganlupa-ta.a11.pw. janganlupa-ta.a11.pw.localhost. (
+			2020112401	; Serial
+			604800		; Referesh
+			86400		; Retry
+			2419200		; Expire
+			60480 )		; Negative Cache TTL
+;
+@	IN	NS	janganlupa-ta.a11.pw.
+@	IN 	A	10.151.73.99
+```
+- Hasil:
+
+![alt text](/img/.jpg)
