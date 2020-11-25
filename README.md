@@ -142,6 +142,7 @@ _**Penyelesaian:**_
 # Proxy
 #### Soal 7: 
 User autentikasi milik Anri, User : userta_a11, Password : inipassw0rdta_a11
+
 _**Penyelesaian:**_
 - Memasukkan perinah kode ```htpasswd -c /etc/squid3/passwd userta_a11``` dan passwordnya ```inipassw0rdta_a11```
 - Memasukkan perintah kode di file ```squid.conf```
@@ -160,6 +161,7 @@ http_access allow USER
 #
 #### Soal 8:
 Anri sudah menjadwal pengerjaan TA-nya setiap hari Selasa-Rabu pukul 13.00-18.00.
+
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf``` 
 ```
@@ -180,6 +182,7 @@ http_access deny all
 #
 #### Soal 9:
 Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 09.00 keesokan harinya (sampai Jumat jam 09.00).
+
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf```
 ```
@@ -201,7 +204,8 @@ http_access deny all
 ![alt text](/img/9_3.jpg)
 #
 #### Soal 10: 
-##### Setiap dia mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id
+Setiap dia mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id
+
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```squid.conf```
 ```
@@ -223,6 +227,7 @@ http_access allow all
 #
 #### Soal 11:
 Bu Meguri meminta Anri untuk mengubah error page default squid
+
 _**Penyelesaian:**_
 - Memasukkan perintah ke UML Mojokerto
 ```
@@ -243,7 +248,8 @@ zone "janganlupa-ta.a11.pw"{
 
 ![alt text](/img/.jpg)
 #### Soal 12:
-menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memasukkan port 8080.
+Menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memasukkan port 8080.
+
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```/etc/bind/jarkom/janganlupa-ta.a11.pw```
 ```
