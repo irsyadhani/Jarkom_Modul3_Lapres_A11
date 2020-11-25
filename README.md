@@ -158,7 +158,7 @@ auth_param basic casesensitive on
 acl USERS proxy_auth REQUIRED
 http_access allow USER
 ```
-
+#
 #### Soal 8:
 Anri sudah menjadwal pengerjaan TA-nya setiap hari Selasa-Rabu pukul 13.00-18.00.
 _**Penyelesaian:**_
@@ -179,7 +179,7 @@ http_access deny all
 - Hasil:
 
 ![alt text](/img/8_3.jpg)
-
+#
 #### Soal 9:
 Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 09.00 keesokan harinya (sampai Jumat jam 09.00).
 _**Penyelesaian:**_
@@ -202,7 +202,7 @@ http_access deny all
 - Hasil:
 
 ![alt text](/img/9_3.jpg)
-
+#
 #### Soal 10: 
 ##### Setiap dia mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id
 _**Penyelesaian:**_
@@ -224,7 +224,7 @@ http_access allow all
 - Hasil:
 
 ![alt text](/img/10_3.jpg)
-
+#
 #### Soal 11:
 Bu Meguri meminta Anri untuk mengubah error page default squid
 _**Penyelesaian:**_
