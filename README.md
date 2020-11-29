@@ -253,9 +253,9 @@ Menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memas
 _**Penyelesaian:**_
 * Pada UML MALANG jalankan perintah apt-get `install bind9 -y` jangan lupa untuk melakukan `apt-get update`
 ```
-zone "janganlupa-ta.a05.pw" {
+zone "janganlupa-ta.a11.pw" {
 	type master;
-	file "/etc/bind/jarkom/janganlupa-ta.a05.pw";
+	file "/etc/bind/jarkom/janganlupa-ta.a11.pw";
 };
 ```
 * Buat folder jarkom dengan menjalankan perintah mkdir /etc/bind/jarkom```
