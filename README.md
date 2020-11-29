@@ -246,7 +246,7 @@ visible_hostname mojokerto
 ```
 - Hasil:
 
-![alt text](/img/.jpg)
+![alt text](/img/11.jpg)
 #### Soal 12:
 Menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memasukkan port 8080.
 
@@ -283,4 +283,4 @@ $TTL	604800
 * Tuliskan `nameserver 10.151.73.99`
 - Hasil:
 
-![alt text](/img/.jpg)
+![alt text](/img/12.jpg)
