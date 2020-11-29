@@ -252,16 +252,17 @@ Menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memas
 
 _**Penyelesaian:**_
 * Pada UML MALANG jalankan perintah apt-get `install bind9 -y` jangan lupa untuk melakukan `apt-get update`
+* Edit file `named.conf.local` dengan menjalankan perintah `nano /etc/bind/named.conf.local` yang didalamnya sebagai berikut :
 ```
 zone "janganlupa-ta.a11.pw" {
 	type master;
 	file "/etc/bind/jarkom/janganlupa-ta.a11.pw";
 };
 ```
-* Buat folder jarkom dengan menjalankan perintah mkdir /etc/bind/jarkom```
-* Copy file db.local dengan menjalankan perintah cp /etc/bind/db.local /etc/bind/jarkom/janganlupa-ta.a11.pw
-* Menjalankan perintah nano /etc/bind/jarkom/janganlupa-ta.a11.pw
-* Memasukkan perintah kode di file ```/etc/bind/jarkom/janganlupa-ta.a11.pw```
+* Buat folder jarkom dengan menjalankan perintah `mkdir /etc/bind/jarkom
+* Copy file `db.local` dengan menjalankan perintah `cp /etc/bind/db.local /etc/bind/jarkom/janganlupa-ta.a11.pw`
+* Menjalankan perintah `nano /etc/bind/jarkom/janganlupa-ta.a11.pw`
+* Memasukkan perintah kode di file `/etc/bind/jarkom/janganlupa-ta.a11.pw`
 ```
 ;
 ; BIND data file for local loopback interface
@@ -281,6 +282,6 @@ $TTL	604800
 * Simpan dan restart dengan menjalankan perintah `service bind9 restart`
 * Pada UML GRESIK edit file `resolv.conf` dengan menjalankan perintah `nano /etc/resolv.conf`
 * Tuliskan `nameserver 10.151.73.99`
-- Hasil:
+* Hasil:
 
 ![alt text](/img/12.jpg)
