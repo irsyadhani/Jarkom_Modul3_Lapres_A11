@@ -186,8 +186,9 @@ Jadwal bimbingan dengan Bu Meguri adalah setiap hari Selasa-Kamis pukul 21.00 - 
 _**Penyelesaian:**_
 - Memasukkan perintah kode di file ```acl.conf```
 ```
-acl AVAILABLE_WORKING_2 time TWH 21:00-23:59
-acl AVAILABLE_WORKING_3 time WHF 00:00-09:00
+acl AVAILABLE_WORKING time TW 13:00-18:00
+acl AVAILABLE_WORKING2 time TWH 21:00-23:59
+acl AVAILABLE_WORKING3 time WHF 00:00-09:00
 ```
 - Memasukkan perintah kode di file ```squid.conf```
 ```
@@ -195,8 +196,9 @@ include /etc/squid3/acl.conf
 visible_hostname mojokerto
 
 http_port 8080
-http_access allow AVAILABLE WORKING_2
-http_access allow AVAILABLE WORKING_3
+http_access allow AVAILABLE_WORKING
+http_access allow AVAILABLE_WORKING2
+http_access allow AVAILABLE_WORKING3
 http_access deny all
 ```
 - Hasil:
@@ -229,20 +231,18 @@ http_access allow all
 Bu Meguri meminta Anri untuk mengubah error page default squid
 
 _**Penyelesaian:**_
-- Memasukkan perintah ke UML Mojokerto
+* Masuk ke dalam folder error dengan mennjalankan perintah `cd /usr/share/squid/errors/English`
+* Jalankan perintah `ls` untuk mengetahui isi keseluruhan folder tersebut, kemudian cari file bernama `ERR_ACCESS_DENIED`
+* Lalu jalankan perintah `rm ERR_ACCESS_DENIED` untuk menghapus file.
+* Download file berupa gambar error untuk menggantikan file yg sebelumnya dihapus dengan menjalankan perintah `wget 10.151.36.202/ERR_ACCESS_DENIED`
+* Memasukkan perintah kode di file ```squid.conf```
 ```
-cd /usr/share/squid3/errors
-mv /usr/share/squid3/errors/en /usr/share/squid3/errors/en1
-mkdir /usr/share/squid3/errors/en
-wget 10.151.36.202/ERR_ACCESS_DENIED
-cp -r ERR_ACCESS_DENIED /usr/share/squid3/errors/en
-```
-- Memasukkan perintah kode di file ```/etc/bind/named.conf.local```
-```
-zone "janganlupa-ta.a11.pw"{
-	type master;
-	file"/ets/bind/jarkom/janganlupa-ta.a13.pw";
-};
+error_directory /usr/share/squid3/errors/English/
+include /etc/squid3/acl.conf
+
+http_port 8080
+http_access deny all
+visible_hostname mojokerto
 ```
 - Hasil:
 
@@ -251,14 +251,24 @@ zone "janganlupa-ta.a11.pw"{
 Menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.yyy.pw dan memasukkan port 8080.
 
 _**Penyelesaian:**_
-- Memasukkan perintah kode di file ```/etc/bind/jarkom/janganlupa-ta.a11.pw```
+* Pada UML MALANG jalankan perintah apt-get `install bind9 -y` jangan lupa untuk melakukan `apt-get update`
+```
+zone "janganlupa-ta.a05.pw" {
+	type master;
+	file "/etc/bind/jarkom/janganlupa-ta.a05.pw";
+};
+```
+* Buat folder jarkom dengan menjalankan perintah mkdir /etc/bind/jarkom```
+* Copy file db.local dengan menjalankan perintah cp /etc/bind/db.local /etc/bind/jarkom/janganlupa-ta.a11.pw
+* Menjalankan perintah nano /etc/bind/jarkom/janganlupa-ta.a11.pw
+* Memasukkan perintah kode di file ```/etc/bind/jarkom/janganlupa-ta.a11.pw```
 ```
 ;
 ; BIND data file for local loopback interface
 ;
 $TTL	604800
-@	IN	SDA	janganlupa-ta.a11.pw. janganlupa-ta.a11.pw.localhost. (
-			2020112401	; Serial
+@	IN	SDA	janganlupa-ta.a11. root.janganlupa-ta.a11.pw. (
+			2020112901	; Serial
 			604800		; Referesh
 			86400		; Retry
 			2419200		; Expire
@@ -267,6 +277,10 @@ $TTL	604800
 @	IN	NS	janganlupa-ta.a11.pw.
 @	IN 	A	10.151.73.99
 ```
+
+* Simpan dan restart dengan menjalankan perintah `service bind9 restart`
+* Pada UML GRESIK edit file `resolv.conf` dengan menjalankan perintah `nano /etc/resolv.conf`
+* Tuliskan `nameserver 10.151.73.99`
 - Hasil:
 
 ![alt text](/img/.jpg)
