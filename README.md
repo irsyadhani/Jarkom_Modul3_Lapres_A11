@@ -259,7 +259,7 @@ zone "janganlupa-ta.a11.pw" {
 	file "/etc/bind/jarkom/janganlupa-ta.a11.pw";
 };
 ```
-* Buat folder jarkom dengan menjalankan perintah `mkdir /etc/bind/jarkom
+* Buat folder jarkom dengan menjalankan perintah `mkdir /etc/bind/jarkom`
 * Copy file `db.local` dengan menjalankan perintah `cp /etc/bind/db.local /etc/bind/jarkom/janganlupa-ta.a11.pw`
 * Menjalankan perintah `nano /etc/bind/jarkom/janganlupa-ta.a11.pw`
 * Memasukkan perintah kode di file `/etc/bind/jarkom/janganlupa-ta.a11.pw`
